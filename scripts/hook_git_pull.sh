@@ -14,7 +14,7 @@ git reset --hard
 # Pull the latest changes from the master branch
 echo "Pulling the latest changes from master."
 git fetch origin
-git reset --hard origin/master
+git reset --hard origin/main
 
 # Check if the alias exists in ~/.bashrc
 if ! grep -q "alias pull_from_git=" ~/.bashrc; then
