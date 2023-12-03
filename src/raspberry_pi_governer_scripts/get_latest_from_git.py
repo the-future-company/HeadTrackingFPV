@@ -5,7 +5,7 @@ from src.utils import run_bash
 SCRIPT_PATH_GET_LATEST_COMMIT = "../../scripts/get_last_commit.sh"
 SCRIPT_PATH_GET_REPO_DETAILS = "../../scripts/get_repo_details.sh"
 SCRIPT_PATH_GIT_PULL_LATEST = "../../scripts/git_pull_latest.sh"
-SCRIPT_PATH_ADD_ALIAS = "../../scripts/add_python_script_alias.sh"
+SCRIPT_PATH_ADD_ALIAS = "../../scripts/python_entrypoint_get_latest_from_git.sh"
 
 
 def get_latest_remote_commit_id(owner, name, branch='main'):
