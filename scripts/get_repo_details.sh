@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Extracts the owner and repository name from the remote URL
 REMOTE_URL=$(git remote get-url origin)
 
