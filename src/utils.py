@@ -1,7 +1,7 @@
 import subprocess
 
 
-def run_bash(script_path, cwd=None):
+def run_bash(script_path, cwd=None) -> str:
     """
     Executes a Bash script located in the 'scripts' directory.
     :param script_path: The path of the Bash script to run.

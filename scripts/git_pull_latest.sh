@@ -15,13 +15,3 @@ git reset --hard
 echo "Pulling the latest changes from master."
 git fetch origin
 git reset --hard origin/main
-
-# Check if the alias exists in ~/.bashrc
-if ! grep -q "alias pull_from_git=" ~/.bashrc; then
-    echo "Adding alias to ~/.bashrc"
-    echo "alias pull_from_git='bash $SCRIPT_DIR/git_pull_script.sh'" >> ~/.bashrc
-    # shellcheck disable=SC1090
-    source ~/.bashrc
-else
-    echo "Alias already exists."
-fi

@@ -5,6 +5,7 @@ from src.utils import run_bash
 SCRIPT_PATH_GET_LATEST_COMMIT = "../../scripts/get_last_commit.sh"
 SCRIPT_PATH_GET_REPO_DETAILS = "../../scripts/get_repo_details.sh"
 SCRIPT_PATH_GIT_PULL_LATEST = "../../scripts/git_pull_latest.sh"
+SCRIPT_PATH_ADD_ALIAS = "../../scripts/add_python_script_alias.sh"
 
 
 def get_latest_remote_commit_id(owner, name, branch='main'):
@@ -42,5 +43,16 @@ def check_for_new_commit():
     else:
         print("Failed to retrieve repository details.")
 
-# Run the script
-check_for_new_commit()
+
+def add_alias_for_script():
+    run_bash(SCRIPT_PATH_ADD_ALIAS)
+
+
+def main():
+    check_for_new_commit()
+    add_alias_for_script()
+
+
+if __name__ == "__main__":
+    main()
+
