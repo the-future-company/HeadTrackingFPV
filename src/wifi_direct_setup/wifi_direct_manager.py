@@ -2,10 +2,11 @@ import subprocess
 import time
 import logging
 from pathlib import Path
+from ..utils import run_bash
 
 
 # Configuration
-BASH_SCRIPT_PATH = "./wifi_direct_setup.sh"
+BASH_SCRIPT_PATH = "scripts/wifi_direct_setup.sh"
 MAX_RETRIES = 3
 RETRY_DELAY = 5  # seconds
 
@@ -50,7 +51,7 @@ def main():
     retries = 0
     while retries < MAX_RETRIES:
         logging.info(f"Attempt {retries + 1} to set up Wi-Fi Direct")
-        success, output = run_bash_script()
+        success, output = run_bash(BASH_SCRIPT_PATH)
         if success:
             logging.info("Wi-Fi Direct setup successful")
             print("Setup successful.")

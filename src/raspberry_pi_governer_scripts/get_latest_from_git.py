@@ -18,11 +18,14 @@ def get_latest_remote_commit_id(owner, name, branch='main'):
 
 def check_for_new_commit():
     # Get the latest local commit ID
-    latest_commit_id = run_bash(SCRIPT_PATH_GET_LATEST_COMMIT)
+    success, latest_commit_id = run_bash(SCRIPT_PATH_GET_LATEST_COMMIT)
+    if not success:
+        print(f"Failed to get the latest local commit ID: {latest_commit_id}")
+        return
 
     # Get repository details
-    repo_details = run_bash(SCRIPT_PATH_GET_REPO_DETAILS)
-    if repo_details:
+    success, repo_details = run_bash(SCRIPT_PATH_GET_REPO_DETAILS)
+    if success and repo_details:
         owner, name = repo_details.split('/')
 
         try:
@@ -33,7 +36,9 @@ def check_for_new_commit():
             # Compare the latest local and remote commit IDs
             if latest_commit_id != latest_remote_commit_id:
                 print("New commit detected in the main branch. Pulling latest changes.")
-                run_bash(SCRIPT_PATH_GIT_PULL_LATEST)
+                success, pull_output = run_bash(SCRIPT_PATH_GIT_PULL_LATEST)
+                if not success:
+                    print(f"Failed to pull latest changes: {pull_output}")
             else:
                 print("Local repository is up-to-date with the main branch.")
         except requests.HTTPError as e:
@@ -45,7 +50,9 @@ def check_for_new_commit():
 
 
 def add_alias_for_script():
-    run_bash(SCRIPT_PATH_ADD_ALIAS)
+    success, output = run_bash(SCRIPT_PATH_ADD_ALIAS)
+    if not success:
+        print(f"Failed to add alias: {output}")
 
 
 def main():
