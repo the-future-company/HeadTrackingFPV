@@ -1,8 +1,8 @@
-from pathlib import Path
 import subprocess
+from pathlib import Path
 
 
-def run_bash(script_path: str, cwd=None) -> str:
+def run_bash(script_path: str, cwd=None) -> (bool, str):
     """
     Executes a Bash script located in the 'scripts' directory.
     :param script_path: The path of the Bash script to run.
@@ -26,7 +26,7 @@ def run_bash(script_path: str, cwd=None) -> str:
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                 text=True, check=True)
         print(f"Script {script_path.name} executed successfully.")
-        return result.stdout.strip()
+        return True, result.stdout.strip()
     except subprocess.CalledProcessError as e:
         print(f"Error executing {script_path.name}: {e.stderr.strip()}")
-        raise
+        return False
