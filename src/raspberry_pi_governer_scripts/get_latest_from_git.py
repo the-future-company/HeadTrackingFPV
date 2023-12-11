@@ -1,6 +1,7 @@
-import requests
-from ..utils import run_bash
+from pathlib import Path
 
+import requests
+from ..utils import run_bash, setup_logs
 
 SCRIPT_PATH_GET_LATEST_COMMIT = "scripts/get_last_commit.sh"
 SCRIPT_PATH_GET_REPO_DETAILS = "scripts/get_repo_details.sh"
@@ -56,6 +57,7 @@ def add_alias_for_script():
 
 
 def main():
+    setup_logs(Path(__file__).name)
     check_for_new_commit()
     add_alias_for_script()
 
