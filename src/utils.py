@@ -1,5 +1,14 @@
+import logging
 import subprocess
 from pathlib import Path
+
+
+def setup_logs(log_name: str):
+    log_file_path = Path.home() / '.logs' / f'{log_name}.log'
+    log_file_path.parent.mkdir(exist_ok=True)
+
+    logging.basicConfig(filename=log_file_path, level=logging.INFO,
+                        format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def run_bash(script_path: str, cwd=None) -> (bool, str):
